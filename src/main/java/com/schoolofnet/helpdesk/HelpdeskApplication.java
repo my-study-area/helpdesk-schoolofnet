@@ -1,4 +1,4 @@
-package com.schoolofnet.Helpdesk;
+package com.schoolofnet.helpdesk;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
