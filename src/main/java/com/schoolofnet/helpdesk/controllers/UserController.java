@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.schoolofnet.helpdesk.models.User;
 
 @Controller
-@RequestMapping
+@RequestMapping("/users")
 public class UserController {
     
     @GetMapping
