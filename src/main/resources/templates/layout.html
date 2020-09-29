@@ -2,19 +2,14 @@
 <html
 	xmlns:th="http://thymeleaf.org/"
 	xmlns:layout="http://ultraq.net.nz/thymeleaf/layout/">
-<head>
-	<meta charset="UTF-8"/>
-	<title>HelpDesk - Spring App</title>
-	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
-	<link rel="stylesheet" th:href="@{/css/app.css}" />
-</head>
+<head th:replace="fragments :: head"></head>
 <body>
-
-	<th:block layout:replace="fragments/header"></th:block>
-	
 	<div class="container">
 		<div class="row">
-			<th:block layout:fragment="content"></th:block>
+			<div layout:fragment="content">conteúdo padrão</div>>
+		</div>
+		<div class="row">
+			<div layout:fragment="custom-footer">footer padrão</div>>
 		</div>
 	</div>
 	
