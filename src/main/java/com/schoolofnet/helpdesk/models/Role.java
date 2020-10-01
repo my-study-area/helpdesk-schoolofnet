@@ -25,10 +25,10 @@ public class Role {
     
     @Column
     @NotEmpty(message = "Can not be empty")
-    private String role;
+    private String name;
 
-    public Role(String role) {
-        this.role = role;
+    public Role(String name) {
+        this.name = name;
     }
     
 }
