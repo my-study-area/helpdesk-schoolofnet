@@ -19,12 +19,26 @@ public class RoleServiceImpl implements RoleService {
 
 	@Override
 	public List<Role> findAll() {
-		return null;
+		return repository.findAll();
 	}
 
 	@Override
 	public Role create(Role role) {
 		return this.repository.save(role);
+	}
+
+	@Override
+	public boolean delete(Long id) {
+		Role role = findById(id);
+		if (role == null) {
+			return false;
+		}
+		this.repository.delete(role);
+		return true;
+	}
+
+	private Role findById(Long id) {
+		 return this.repository.findById(id).orElse(null);
 	}
 	
 }

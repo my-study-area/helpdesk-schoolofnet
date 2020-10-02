@@ -4,19 +4,30 @@
 	xmlns:layout="http://ultraq.net.nz/thymeleaf/layout/"
 	layout:decorate="~{layout}">
 	<th:block layout:fragment="content">
-		<table class="table table-bordered">
-			<thead>
-				<tr>
-					<th>Id</th>
-					<th>Roles</th>				
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>1</td>
-					<td>Admin</td>
-				</tr>
-			</tbody>
-		</table>
+		<div class="col-xs-12 col-md-12">
+			<a href="/roles/new" class="btn btn-success">Create</a>
+		</div>
+		<div class="col-xs-12 col-md-12">
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Roles</th>				
+						<th>Actions</th>				
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="role : ${list}">
+						<td th:text="${role.id}"></td>
+						<td th:text="${role.name}"></td>
+						<td>
+							<form th:action="@{/roles/{id}(id = ${role.id})}" th:method="delete">
+								<button class="btn btn-danger">Delete</button>
+							</form>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</th:block>
 </html>
