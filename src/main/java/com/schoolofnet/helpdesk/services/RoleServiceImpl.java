@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.schoolofnet.helpdesk.RolesRepository;
 import com.schoolofnet.helpdesk.models.Role;
+import com.schoolofnet.helpdesk.repository.RolesRepository;
 
 import lombok.AllArgsConstructor;
 
