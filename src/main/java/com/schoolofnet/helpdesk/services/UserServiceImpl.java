@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public List<User> findAll() {
-		return null;
+		return this.repository.findAll();
 	}
 
 	@Override
@@ -30,7 +30,16 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean delete(Long id) {
-		return false;
+		User user = findById(id);
+		if (user == null) {
+			return false;
+		}
+		this.repository.delete(user);
+		return true;
+	}
+
+	private User findById(Long id) {
+		return this.repository.findById(id).orElse(null);
 	}
 
 	@Override

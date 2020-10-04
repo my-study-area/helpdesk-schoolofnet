@@ -12,13 +12,21 @@
 			<thead>
 				<tr>
 					<th>Name</th>
+					<th>Last Name</th>
 					<th>Email</th>				
+					<th>Actions</th>				
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>Adriano</td>
-					<td>adriano@email.com</td>
+				<tr th:each="user :${list}">
+					<td th:text="${user.name}"></td>
+					<td th:text="${user.lastName}"></td>
+					<td th:text="${user.email}"></td>
+					<td>
+						<form th:action="@{/users/{id}(id = ${user.id})}" th:method="delete">
+							<button class="btn btn-danger">Delete</button>
+						</form>
+					</td>
 				</tr>
 			</tbody>
 		</table>
