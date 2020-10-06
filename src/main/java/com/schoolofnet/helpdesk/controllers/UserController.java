@@ -8,8 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.schoolofnet.helpdesk.models.User;
@@ -37,9 +39,10 @@ public class UserController {
         return "users/create";
     }
     
-    @GetMapping("/{id}")
+    @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("user", new User());
+    	User user = this.userService.show(id);
+        model.addAttribute("user", user);			
         return "users/edit";
     }
     
@@ -52,6 +55,15 @@ public class UserController {
     	return "redirect:/users";
     }
     
+    @PutMapping("{id}")
+    public String upadate(@PathVariable("id") Long id, @Valid @ModelAttribute("user") User user, BindingResult bindingResult, Model model) {
+    	if (bindingResult.hasErrors()) {
+			return "users/edit";
+		}
+    	this.userService.update(id, user);
+    	return "redirect:/users";
+    }
+
     @DeleteMapping("{id}")
     public String delete(@PathVariable("id") Long id, Model model) {
     	this.userService.delete(id);
