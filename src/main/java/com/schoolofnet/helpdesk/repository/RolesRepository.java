@@ -7,5 +7,5 @@ import com.schoolofnet.helpdesk.models.Role;
 
 @Repository
 public interface RolesRepository extends JpaRepository<Role, Long>{
-
+	Role findByName(String name);
 }

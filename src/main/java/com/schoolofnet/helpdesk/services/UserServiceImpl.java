@@ -1,12 +1,15 @@
 package com.schoolofnet.helpdesk.services;
 
+import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.schoolofnet.helpdesk.models.Role;
 import com.schoolofnet.helpdesk.models.User;
+import com.schoolofnet.helpdesk.repository.RolesRepository;
 import com.schoolofnet.helpdesk.repository.UserRepository;
 
 import lombok.AllArgsConstructor;
@@ -17,6 +20,10 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserRepository repository;
+	
+	@Autowired
+	private RolesRepository roleRepository;
+	
 	@Autowired
 	private BCryptPasswordEncoder enconder;
 	
@@ -29,6 +36,12 @@ public class UserServiceImpl implements UserService {
 	public User create(User user) {
 		user.setActive(true);
 		user.setPassword(enconder.encode(user.getPassword()));
+		
+		Role userRole = this.roleRepository.findByName("USER");
+		
+		HashSet<Role> roles = new HashSet<>();
+		roles.add(userRole);
+		user.setRoles(roles);
 		return this.repository.save(user);
 	}
 
