@@ -19,6 +19,12 @@
 					<a href="/roles" class="nav-link">Roles</a>
 				</li>
 			</ul>
+			
+			<ul class="navbar-nav ml-auto" sec:authorize="isAuthenticated()">
+				<li class="nav-item">
+					<a class="nav-link" href="/logout">Logout</a>
+				</li>
+			</ul>
 		</div>
 	</nav>
 </html>
