@@ -69,6 +69,13 @@ public class UserServiceImpl implements UserService {
 			userUpdated.setEmail(user.getEmail());
 			userUpdated.setPassword(enconder.encode(user.getPassword()));
 			userUpdated.setActive(user.getActive());
+			
+			String roleName = user.getRoles().iterator().next().getName();
+			Role userRole = this.roleRepository.findByName(roleName);
+			HashSet<Role> roles = new HashSet<>();
+			roles.add(userRole);
+			
+			userUpdated.setRoles(roles);
 			this.repository.save(userUpdated);
 			return true;
 		}

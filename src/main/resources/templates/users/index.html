@@ -25,6 +25,7 @@
 					<td th:text="${user.email}"></td>
 					<td th:text="${user.active}"></td>
 					<td>
+						<a th:href="@{/users/edit/{id}(id = ${user.id})}" class="btn btn-info">Edit</a>
 						<form th:action="@{/users/{id}(id = ${user.id})}" th:method="delete">
 							<button class="btn btn-danger">Delete</button>
 						</form>
