@@ -4,34 +4,37 @@
 	xmlns:layout="http://ultraq.net.nz/thymeleaf/layout/"
 	layout:decorate="~{layout}">
 	<th:block layout:fragment="content">
-		<h5 class="mb-4">Listing Users</h5>
 		<div class="col-xs-12 col-md-12 mb-4">
-			<a href="/users/new" class="btn btn-success">Create</a>
+			<h5 class="mb-4">Listing Users</h5>
+			<a href="/users/new" class="mb-4 btn btn-success">Create</a>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Last Name</th>
+						<th>Email</th>
+						<th>Active</th>
+						<th>Actions</th>				
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="user :${list}">
+						<td th:text="${user.name}"></td>
+						<td th:text="${user.lastName}"></td>
+						<td th:text="${user.email}"></td>
+						<td th:switch="${user.active}">
+							<span th:case="${true}" class="badge badge-success" th:text="${user.active}"></span>
+							<span th:case="${false}" class="badge badge-warning" th:text="${user.active}"></span>
+						</td>
+						<td>
+							<a th:href="@{/users/edit/{id}(id = ${user.id})}" class="btn btn-info">Edit</a>
+							<form class="d-inline" th:action="@{/users/{id}(id = ${user.id})}" th:method="delete">
+								<button class="btn btn-danger">Delete</button>
+							</form>
+						</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
-		<table class="table table-bordered">
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>Last Name</th>
-					<th>Email</th>
-					<th>Active</th>
-					<th>Actions</th>				
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="user :${list}">
-					<td th:text="${user.name}"></td>
-					<td th:text="${user.lastName}"></td>
-					<td th:text="${user.email}"></td>
-					<td th:text="${user.active}"></td>
-					<td>
-						<a th:href="@{/users/edit/{id}(id = ${user.id})}" class="btn btn-info">Edit</a>
-						<form th:action="@{/users/{id}(id = ${user.id})}" th:method="delete">
-							<button class="btn btn-danger">Delete</button>
-						</form>
-					</td>
-				</tr>
-			</tbody>
-		</table>
 	</th:block>
 </html>
