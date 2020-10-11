@@ -81,6 +81,11 @@ public class UserServiceImpl implements UserService {
 		}
 		return false;
 	}
+	
+	@Override
+	public List<User> findAllWhereRoleEquals(Long roleId) {
+		return this.repository.findAllWhereRoleEquals(roleId);
+	}
 
 	@Override
 	public User show(Long id) {

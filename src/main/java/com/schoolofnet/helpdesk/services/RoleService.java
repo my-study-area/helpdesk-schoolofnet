@@ -8,4 +8,5 @@ public interface RoleService {
 	public List<Role> findAll();
 	public Role create(Role role);
 	public boolean delete(Long id);
+	public Role findByName(String name);
 }
