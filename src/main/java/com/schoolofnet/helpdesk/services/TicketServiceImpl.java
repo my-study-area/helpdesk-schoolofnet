@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
+import com.schoolofnet.helpdesk.models.Role;
 import com.schoolofnet.helpdesk.models.Ticket;
 import com.schoolofnet.helpdesk.models.User;
 import com.schoolofnet.helpdesk.repository.TicketRepository;
@@ -24,6 +26,13 @@ public class TicketServiceImpl implements TicketService {
 	@Autowired
 	private UserRepository userRepository;
 
+	
+	@Autowired
+	private RoleService roleService;
+	
+	@Autowired
+	private UserService userService;
+	
 	@Override
 	public List<Ticket> findAll() {
 		return null;
@@ -50,6 +59,20 @@ public class TicketServiceImpl implements TicketService {
 
 	@Override
 	public User show(Long id) {
+		return null;
+	}
+
+	@Override
+	public Model createTemplate(Model model) {
+		model.addAttribute("ticket", new Ticket());
+		Role adminRole = this.roleService.findByName("ADMIN");
+
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String userName = auth.getName();
+		User userLogged = this.userRepository.findByEmail(userName);
+		
+		List<User> users = userService.findAllWhereRoleEquals(adminRole.getId(), userLogged.getId());
+		model.addAttribute("users", users);
 		return null;
 	}
 
