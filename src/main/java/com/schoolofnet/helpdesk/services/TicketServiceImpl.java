@@ -2,10 +2,21 @@ package com.schoolofnet.helpdesk.services;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.schoolofnet.helpdesk.models.Ticket;
 import com.schoolofnet.helpdesk.models.User;
+import com.schoolofnet.helpdesk.repository.TicketRepository;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
+@Service
 public class TicketServiceImpl implements TicketService {
+	
+	@Autowired
+	private TicketRepository ticketRepository;
 
 	@Override
 	public List<Ticket> findAll() {
@@ -13,8 +24,8 @@ public class TicketServiceImpl implements TicketService {
 	}
 
 	@Override
-	public User create(Ticket ticket) {
-		return null;
+	public Ticket create(Ticket ticket) {
+		return this.ticketRepository.save(ticket);
 	}
 
 	@Override

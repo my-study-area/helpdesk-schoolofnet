@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -28,23 +29,20 @@ public class Ticket {
 	
 	@Column
 	@NotEmpty(message = "Can not be empty")
-	private Long name;
+	private String name;
 	
 	@Column
 	@NotEmpty(message = "Can not be empty")
 	private String description;
 	
 	@Column
-	@NotEmpty(message = "Can not be empty")
 	private Date created;
 	
 	@Column
-	@NotEmpty(message = "Can not be empty")
 	private Date closed;
 	
 	@Column
-	@NotEmpty(message = "Can not be empty")
-	private Boolean finished;
+	private Boolean finished =  false;
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id")
@@ -56,5 +54,9 @@ public class Ticket {
 	@JsonBackReference
 	private User technician;
 	
+	@PrePersist
+	public void prePersiste() {
+		this.setCreated(new Date());
+	}
 	
 }
