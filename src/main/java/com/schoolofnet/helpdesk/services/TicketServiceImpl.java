@@ -3,11 +3,14 @@ package com.schoolofnet.helpdesk.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.schoolofnet.helpdesk.models.Ticket;
 import com.schoolofnet.helpdesk.models.User;
 import com.schoolofnet.helpdesk.repository.TicketRepository;
+import com.schoolofnet.helpdesk.repository.UserRepository;
 
 import lombok.AllArgsConstructor;
 
@@ -17,6 +20,9 @@ public class TicketServiceImpl implements TicketService {
 	
 	@Autowired
 	private TicketRepository ticketRepository;
+	
+	@Autowired
+	private UserRepository userRepository;
 
 	@Override
 	public List<Ticket> findAll() {
@@ -25,6 +31,10 @@ public class TicketServiceImpl implements TicketService {
 
 	@Override
 	public Ticket create(Ticket ticket) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String userName = auth.getName();
+		User userLogged = this.userRepository.findByEmail(userName);
+		ticket.setUserOpen(userLogged);
 		return this.ticketRepository.save(ticket);
 	}
 
