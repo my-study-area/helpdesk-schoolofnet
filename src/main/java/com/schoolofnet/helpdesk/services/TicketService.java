@@ -8,7 +8,7 @@ import com.schoolofnet.helpdesk.models.Ticket;
 
 public interface TicketService {
 	public List<Ticket> findAll();
-	public Model createTemplate(Model model);
+	public Model findAllTechinician(Model model);
 	public Ticket create(Ticket ticket);
 	public boolean delete(Long id);
 	public boolean update(Long id, Ticket ticket);

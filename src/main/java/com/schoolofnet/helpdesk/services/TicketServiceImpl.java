@@ -63,8 +63,8 @@ public class TicketServiceImpl implements TicketService {
 	}
 
 	@Override
-	public Model createTemplate(Model model) {
-		model.addAttribute("ticket", new Ticket());
+	public Model findAllTechinician(Model model) {
+		
 		Role adminRole = this.roleService.findByName("ADMIN");
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -73,7 +73,7 @@ public class TicketServiceImpl implements TicketService {
 		
 		List<User> users = userService.findAllWhereRoleEquals(adminRole.getId(), userLogged.getId());
 		model.addAttribute("users", users);
-		return null;
+		return model;
 	}
 
 }

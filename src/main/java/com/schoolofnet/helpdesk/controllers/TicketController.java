@@ -38,7 +38,8 @@ public class TicketController {
 	
 	@GetMapping("/new")
 	public String create(Model model) {
-		model = this.ticketService.createTemplate(model);
+		model = this.ticketService.findAllTechinician(model);
+		model.addAttribute("ticket", new Ticket());
 		return "tickets/create";
 	}
 	
