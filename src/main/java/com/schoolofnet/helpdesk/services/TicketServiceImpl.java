@@ -58,8 +58,8 @@ public class TicketServiceImpl implements TicketService {
 	}
 
 	@Override
-	public User show(Long id) {
-		return null;
+	public Ticket show(Long id) {
+		return this.ticketRepository.findById(id).orElse(null);
 	}
 
 	@Override
