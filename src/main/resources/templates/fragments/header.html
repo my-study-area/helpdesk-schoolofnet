@@ -13,10 +13,13 @@
 		<div class="collapse navbar-collapse" id="navbar">
 			<ul class="navbar-nav mr-auto" sec:authorize="isAuthenticated()">
 				<li class="nav-item">
-					<a href="/users" class="nav-link">Users</a>
+					<a href="/users" class="nav-link" sec:authorize="hasAuthority('ADMIN')">Users</a>
 				</li>
 				<li class="nav-item">
-					<a href="/roles" class="nav-link">Roles</a>
+					<a href="/roles" class="nav-link" sec:authorize="hasAuthority('ADMIN')">Roles</a>
+				</li>
+				<li class="nav-item">
+					<a href="/tickets" class="nav-link">Tickets</a>
 				</li>
 			</ul>
 			
