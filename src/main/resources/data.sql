@@ -12,3 +12,5 @@ INSERT INTO users_roles (user_id, role_id) VALUES (3,1);
 INSERT INTO users_roles (user_id, role_id) VALUES (4,1);
 
 insert into tickets (closed, created, description, finished, name, technician_id, user_id) values (null, '2020-10-13 19:56:28', 'decricao ticket 1', 0, 'nome do ticket', 3, 1 );
+insert into tickets (closed, created, description, finished, name, technician_id, user_id) values (null, '2020-10-14 09:10:00', 'Uma descrição do ticket 2', 0, 'ticket 2', 4, 1 );
+insert into tickets (closed, created, description, finished, name, technician_id, user_id) values (null, '2020-10-12 18:05:12', 'Uma descrição do ticket 3', 0, 'ticket 3', 1, 3 );
