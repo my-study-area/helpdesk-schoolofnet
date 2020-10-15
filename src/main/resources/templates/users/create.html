@@ -5,30 +5,36 @@
 	layout:decorate="~{layout}">
 	<th:block layout:fragment="content">
 		<div class="col-xs-12 col-md-12">
-			<h4>Create a new User</h4>
-			<form action="" th:action="@{/users/}" th:object="${user}" th:method="post">
-				<p th:text="${fields}"></p>
-				<div class="form-group">
-					<input type="text" th:field="*{name}" name="name" placeholder="Digite o nome do usuário" class="form-control" />
-					<span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">User name error</span>
+			<div class="card">
+				<div class="card-header">
+					<h4>Create a new User</h4>
 				</div>
-				<div class="form-group">
-					<input type="text" th:field="*{lastName}" name="lastName" placeholder="Digite o sobrenome do usuário" class="form-control" />
-					<span class="text-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">User lastName error</span>
+				<div class="card-block">
+					<form action="" th:action="@{/users/}" th:object="${user}" th:method="post">
+						<p th:text="${fields}"></p>
+						<div class="form-group">
+							<input type="text" th:field="*{name}" name="name" placeholder="Digite o nome do usuário" class="form-control" />
+							<span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">User name error</span>
+						</div>
+						<div class="form-group">
+							<input type="text" th:field="*{lastName}" name="lastName" placeholder="Digite o sobrenome do usuário" class="form-control" />
+							<span class="text-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">User lastName error</span>
+						</div>
+						<div class="form-group">
+							<input type="text" th:field="*{email}" name="email" placeholder="Digite o email do usuário" class="form-control" />
+							<span class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">User email error</span>
+						</div>
+						<div class="form-group">
+							<input type="password" th:field="*{password}" name="password" placeholder="Digite a senha do usuário" class="form-control" />
+							<span class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">User password error</span>
+						</div>
+						<div class="form-group">
+							<button type="submit" class="btn btn-primary">Save</button>
+							<a href="/users" class="btn btn-secondary">Back</a>
+						</div>
+					</form>				
 				</div>
-				<div class="form-group">
-					<input type="text" th:field="*{email}" name="email" placeholder="Digite o email do usuário" class="form-control" />
-					<span class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">User email error</span>
-				</div>
-				<div class="form-group">
-					<input type="password" th:field="*{password}" name="password" placeholder="Digite a senha do usuário" class="form-control" />
-					<span class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">User password error</span>
-				</div>
-				<div class="form-group">
-				<button type="submit" class="btn btn-primary">Save</button>
-				<a href="/users" class="btn btn-default">Back</a>
-				</div>
-			</form>
+			</div>
 		</div>
 	</th:block>
 </html>
