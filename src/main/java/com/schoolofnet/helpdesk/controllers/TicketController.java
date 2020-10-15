@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -67,6 +68,12 @@ public class TicketController {
 			return "tickets/edit";
 		}
 		this.ticketService.update(id, ticket);
+		return "redirect:/tickets";
+	}
+	
+	@DeleteMapping("{id}")
+	public String delete(@PathVariable("id") Long id) {
+		this.ticketService.delete(id);
 		return "redirect:/tickets";
 	}
 

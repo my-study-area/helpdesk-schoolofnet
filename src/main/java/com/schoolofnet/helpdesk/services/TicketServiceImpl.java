@@ -50,7 +50,12 @@ public class TicketServiceImpl implements TicketService {
 
 	@Override
 	public boolean delete(Long id) {
-		return false;
+		Ticket ticket = this.show(id);
+		if (ticket == null) {
+			return false;
+		}
+		this.ticketRepository.delete(ticket);
+		return true;
 	}
 
 	@Override
