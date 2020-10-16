@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.schoolofnet.helpdesk.models.Ticket;
 import com.schoolofnet.helpdesk.services.TicketService;
+import com.schoolofnet.helpdesk.services.UserService;
 
 import lombok.AllArgsConstructor;
 
@@ -27,9 +28,13 @@ public class TicketController {
 	@Autowired
 	private TicketService ticketService;
 	
+	@Autowired
+	private UserService userService;
+	
 	@GetMapping
 	public String index(Model model) {
 		model.addAttribute("list", this.ticketService.findAll());
+		model.addAttribute("currentUser", this.userService.findCurrentUser());
 		return "tickets/index";
 	}
 	@GetMapping("/{id}")

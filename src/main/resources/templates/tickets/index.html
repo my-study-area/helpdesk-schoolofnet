@@ -26,8 +26,8 @@
 						</td>
 						<td>
 							<a th:href="@{/tickets/{id}(id = ${ticket.id})}" class="btn btn-secondary">Show</a>
-							<a th:href="@{/tickets/edit/{id}(id = ${ticket.id})}" class="btn btn-info">Edit</a>
-							<form class="d-inline" th:action="@{/tickets/{id}(id = ${ticket.id})}" th:method="delete">
+							<a th:if="${currentUser.id == ticket.userOpen.id}" th:href="@{/tickets/edit/{id}(id = ${ticket.id})}" class="btn btn-info">Edit</a>
+							<form th:if="${currentUser.id == ticket.userOpen.id}" class="d-inline" th:action="@{/tickets/{id}(id = ${ticket.id})}" th:method="delete">
 								<button class="btn btn-danger">Delete</button>
 							</form>
 						</td>
