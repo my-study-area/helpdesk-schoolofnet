@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.schoolofnet.helpdesk.models.Interaction;
 import com.schoolofnet.helpdesk.models.Ticket;
 import com.schoolofnet.helpdesk.services.TicketService;
 import com.schoolofnet.helpdesk.services.UserService;
@@ -40,6 +41,7 @@ public class TicketController {
 	@GetMapping("/{id}")
 	public String show(@PathVariable Long id, Model model) {
 		model.addAttribute("ticket", this.ticketService.show(id));
+		model.addAttribute("interaction", new Interaction());
 		return "tickets/show";
 	}
 	

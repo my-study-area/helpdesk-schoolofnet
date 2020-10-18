@@ -2,6 +2,7 @@ package com.schoolofnet.helpdesk.controllers;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,6 +22,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class InteractionController {
 	
+	@Autowired
 	private InteractionService InteractionService;
 
 	@PostMapping
@@ -29,7 +31,11 @@ public class InteractionController {
 			@Valid @ModelAttribute("interaction") Interaction interaction,
 			BindingResult bindingResult, 
 			Model model) {
-		return "";
+		if (bindingResult.hasErrors()) {
+			return "tickets/show";
+		}
+		this.InteractionService.create(interaction, ticketId);
+		return "redirect:/tickets/" + ticketId;
 	}
 	
 	@DeleteMapping("{id}")
