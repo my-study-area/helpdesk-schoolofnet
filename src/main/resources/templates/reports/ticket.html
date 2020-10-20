@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html
+	xmlns:th="http://thymeleaf.org/"
+	xmlns:layout="http://ultraq.net.nz/thymeleaf/layout/"
+	layout:decorate="~{layout}">
+	<th:block layout:fragment="content">
+		<div class="col-xs-12 col-md-12">
+			<div class="card">
+				<div class="card-header">
+					<h4>List all Tickets by days</h4>
+				</div>
+				<div class="card-block">
+					<form action="" th:action="@{/reports/tickets/}" th:method="get">
+						<div class="form-group">
+							<select name="day" class="custom-select">
+								<option value="7">Last 7 days</option>
+								<option value="10">Last 10 days</option>
+								<option value="15">Last 15 days</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<button type="submit" class="btn btn-primary">Generate</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-12 col-md-12">
+			<div class="card">
+				<div class="card-header">
+					<h4>Report</h4>
+				</div>
+				<div class="card-block">
+					<table class="table-bordered">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Date Created</th>
+						<th>Finished</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="ticket :${list}">
+						<td th:text="${ticket.name}"></td>
+						<td th:text="${#dates.format(ticket.created, 'dd/MM/yyyy')}"></td>
+						<td th:switch="${ticket.finished}">
+							<span th:case="${true}" class="badge badge-success" th:text="${ticket.finished}"></span>
+							<span th:case="${false}" class="badge badge-danger" th:text="${ticket.finished}"></span>
+						</td>
+					</tr>
+				</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</th:block>
+</html>
