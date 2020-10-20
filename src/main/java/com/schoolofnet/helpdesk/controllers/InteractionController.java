@@ -42,9 +42,9 @@ public class InteractionController {
 	public String delete(
 			@PathVariable("ticketId") Long ticketId,
 			@PathVariable("id") Long id,
-			@Valid @ModelAttribute("interaction") Interaction interaction,
 			Model model) {
-		return "";
+		this.InteractionService.delete(id, ticketId);
+		return "redirect:/tickets/" + ticketId;
 	}
 
 }

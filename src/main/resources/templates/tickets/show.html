@@ -60,7 +60,7 @@
 				<p th:text="${interact.text}"></p>
 			</div>
 			<div class="col-xs-2 col-md-2" th:switch="${userLoggedIn.roles[0].name}">
-				<form th:case="ADMIN" action="" th:action="@{/tickets/{ticketId}/interactions/{id}(tickedId = ${ticket.id}, id = ${interaction.id})}" th:method="delete">
+				<form th:case="ADMIN" action="" th:action="@{/tickets/{ticketId}/interactions/{id}(ticketId = ${ticket.id}, id = ${interact.id})}" th:method="delete">
 					<button type="submit" class="btn btn-danger">Delete</button>
 				</form>
 				<form th:case="USER" action="" th:if="${userLoggedIn.id == ticket.userOpen.id}" th:action="@{/tickets/{ticketId}/interactions/{id}(ticketId = ${ticket.id}, id = ${interact.id})}" th:method="delete">

@@ -39,7 +39,18 @@ public class InteractionServiceImpl implements InteractionService {
 
 	@Override
 	public boolean delete(Long id, Long ticketId) {
-		return false;
+		Interaction interaction = findById(id);
+		
+		if (interaction == null) {
+			return false;
+		}
+		
+		this.interactionRepository.delete(interaction);
+		return true;
+	}
+
+	private Interaction findById(Long id) {
+		return this.interactionRepository.findById(id).orElse(null);
 	}
 
 }
