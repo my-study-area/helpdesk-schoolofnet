@@ -76,6 +76,7 @@ public class TicketController {
 		model = this.ticketService.findAllTechinician(model);
 		model.addAttribute("ticket", ticket);
 		model.addAttribute("interactionsCount", interactions.size());
+		model.addAttribute("userLoggedIn", this.userService.findCurrentUser());
 		return "tickets/edit";
 	}
 	

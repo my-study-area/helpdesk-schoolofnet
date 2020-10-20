@@ -35,7 +35,7 @@
 						</div>
 						
 						<div class="form-group" th:if="${interactionsCount > 0}">
-							<label class="custom-control custom-checkbox">
+							<label class="custom-control custom-checkbox" th:if="${userLoggedIn.id == ticket.userOpen.id or userLoggedIn.roles[0] == 'ADMIN'}">
 								<input type="checkbox" class="custom-control-input" th:checked="${ticket.finished}"/>
 								<span class="custom-control-indicator"></span>
 								<span class="custom-control-description">Closed?</span>
@@ -47,7 +47,7 @@
 						</div>
 						
 						<div class="form-group">
-							<button type="submit" class="btn btn-primary">Save</button>
+							<button type="submit" class="btn btn-primary" th:if="${userLoggedIn.id == ticket.userOpen.id or userLoggedIn.roles[0] == 'ADMIN'}">Save</button>
 							<a href="/tickets" class="btn btn-secondary">Back</a>
 						</div>
 					</form>				
