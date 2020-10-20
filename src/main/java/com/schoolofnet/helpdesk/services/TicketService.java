@@ -13,4 +13,5 @@ public interface TicketService {
 	public boolean delete(Long id);
 	public boolean update(Long id, Ticket ticket);
 	public Ticket show(Long id);
+	public List<Ticket> reportTicketByDay(Integer day);
 }
