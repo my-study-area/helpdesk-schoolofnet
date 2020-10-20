@@ -34,6 +34,18 @@
 							</select>
 						</div>
 						
+						<div class="form-group" th:if="${interactionsCount > 0}">
+							<label class="custom-control custom-checkbox">
+								<input type="checkbox" class="custom-control-input" th:checked="${ticket.finished}"/>
+								<span class="custom-control-indicator"></span>
+								<span class="custom-control-description">Closed?</span>
+							</label>
+						</div>
+						
+						<div class="form-group" th:if="${interactionsCount == 0}">
+							<p class="text-danger">Need at leat one interaction to close this ticket</p>
+						</div>
+						
 						<div class="form-group">
 							<button type="submit" class="btn btn-primary">Save</button>
 							<a href="/tickets" class="btn btn-secondary">Back</a>
