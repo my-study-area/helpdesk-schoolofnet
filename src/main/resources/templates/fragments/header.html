@@ -22,7 +22,10 @@
 					<a href="/tickets" class="nav-link">Tickets</a>
 				</li>
 				<li class="nav-item">
-					<a href="/reports" class="nav-link" sec:authorize="hasAuthority('ADMIN')">Reports</a>
+					<a href="/reports/tickets/" class="nav-link" sec:authorize="hasAuthority('ADMIN')">Reports HTML</a>
+				</li>
+				<li class="nav-item">
+					<a href="/reports/tickets/pdfgen" class="nav-link" sec:authorize="hasAuthority('ADMIN')">Reports PDF</a>
 				</li>
 			</ul>
 			
